@@ -16,12 +16,13 @@ module.exports = {
          }
       ]
    },
-   defaultNetwork: "goerli",
+   defaultNetwork: "etherscan",
    networks: {
-      goerli: {
-         url: process.env.GOERLI_URL,
-         accounts: [process.env.PRIVATE_KEY]
+      etherscan: {
+         url: process.env.ETH_URL,
+         accounts: [process.env.PRIVATE_KEY],
       },
+    
       verify: {
          // Define the URL and accounts for the verify network
          url: "https://eth-goerli.alchemyapi.io/v2/your-alchemy-api-key", // Update this URL with your own Alchemy API key or other provider URL

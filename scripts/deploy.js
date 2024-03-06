@@ -8,6 +8,8 @@ async function main() {
   const ForceFinanceCoin = await ethers.getContractFactory("ForceFinanceCoin");
   const forceFinanceCoin = await ForceFinanceCoin.deploy(initialOwner); // Pass the initialOwner as an argument
 
+ 
+
   await forceFinanceCoin.deployed();
 
   console.log("ForceFinanceCoin deployed to:", forceFinanceCoin.address);
