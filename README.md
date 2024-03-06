@@ -26,9 +26,16 @@ npx hardhat test
 npx hardhat run scripts/deploy.js --network <network>
 
 Replace <network> with the desired network (e.g., localhost, goerli, ethereum mainnet).
+```
 
-Configuration
-The project is configured with Hardhat for Ethereum smart contract development. The configuration file hardhat.config.js contains network settings, compiler options, and other project configurations.
+## Configuration
 
+- The project is configured with Hardhat for Ethereum smart contract development. The configuration file hardhat.config.js contains network settings, compiler options, and other project configurations.
 
+## Contributing
 
+- Contributions are welcome! Feel free to open issues or submit pull requests for bug fixes, feature enhancements, or other improvements.
+
+## License
+
+- This project is licensed under the MIT License. See the LICENSE file for details.
