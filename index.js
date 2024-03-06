@@ -9,11 +9,11 @@ const abi = [
   "function transfer(address to, uint amount)",
 ];
 
-// Replace this with your deployed contract address
-const contractAddress = "0xBA1044D1D805730bC2cad434fB91164803678bff";
+
+const contractAddress = "0xbf05C4023E735aDb912E2cc34c0f391702efEC34";
 
 async function main() {
-  // Connect to the network
+  
   const provider = new ethers.providers.JsonRpcProvider("https://goerli.infura.io/v3/b725d626b2e9485f9e5ae8366b22cb55");
 
   // Create a new instance of the ERC20 contract
