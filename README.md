@@ -2,7 +2,7 @@
 
 ## Overview
 
-ForceFinance Coin is an ERC-20 token implemented using the Hardhat development framework for Ethereum smart contracts. It provides functionalities such as minting, burning, pausing, and permitting token transfers. The token is designed to be used in decentralized finance (DeFi) applications, decentralized exchanges (DEXs), and other Ethereum-based projects.
+Force Finance Coin is an ERC-20 token implemented using the Hardhat development framework for Ethereum smart contracts. It provides functionalities such as minting, burning, pausing, and permitting token transfers. The token is designed to be used in decentralized finance (DeFi) applications, decentralized exchanges (DEXs), and other Ethereum-based projects.
 
 ## Features
 
