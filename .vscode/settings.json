@@ -1,0 +1,12 @@
+{
+    "solidity.compileUsingRemoteVersion": "latest",
+    "cSpell.words": [
+        "Habib",
+        "influxdata",
+        "nomicfoundation",
+        "nomiclabs",
+        "sourcify",
+        "undici"
+    ],
+    "json.schemas": []
+}
