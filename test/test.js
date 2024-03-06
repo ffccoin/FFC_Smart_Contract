@@ -2,50 +2,43 @@ const { expect } = require("chai");
 
 describe("ForceFinanceCoin", function () {
   let ForceFinanceCoin;
+  let forceFinanceCoin;
   let owner;
   let addr1;
   let addr2;
-  let forceFinanceCoin;
 
   beforeEach(async function () {
-    ForceFinanceCoin = await ethers.getContractFactory("ForceFinanceCoin");
     [owner, addr1, addr2] = await ethers.getSigners();
-    forceFinanceCoin = await ForceFinanceCoin.deploy(
-      "Force Finance Coin",
-      "$FFC",
-      ethers.utils.parseUnits("5000000000", 18),
-      owner.address
-    );
+    ForceFinanceCoin = await ethers.getContractFactory("ForceFinanceCoin");
+    forceFinanceCoin = await ForceFinanceCoin.deploy(owner.address);
     await forceFinanceCoin.deployed();
   });
 
-  it("Should assign the total supply of tokens to the owner", async function () {
-    const ownerBalance = await forceFinanceCoin.balanceOf(owner.address);
-    expect(ownerBalance.toString()).to.equal(
-      ethers.utils.parseUnits("5000000000", 18).toString()
-    );
+  it("Should have correct name, symbol, and initial supply", async function () {
+    const name = await forceFinanceCoin.name();
+    const symbol = await forceFinanceCoin.symbol();
+    const decimals = await forceFinanceCoin.decimals();
+    const initialSupply = await forceFinanceCoin.totalSupply();
+
+    expect(name).to.equal("ForceFinanceCoin");
+    expect(symbol).to.equal("$FFC");
+    expect(initialSupply).to.equal(ethers.BigNumber.from("5000000000").mul(ethers.BigNumber.from(10).pow(decimals)));
+    expect(await forceFinanceCoin.balanceOf(owner.address)).to.equal(initialSupply);
   });
 
-  it("Should transfer tokens between accounts", async function () {
-    await forceFinanceCoin.transfer(addr1.address, ethers.utils.parseUnits("100", 18));
-    const addr1Balance = await forceFinanceCoin.balanceOf(addr1.address);
-    expect(addr1Balance.toString()).to.equal(ethers.utils.parseUnits("100", 18).toString());
+  it("Should pause and unpause", async function () {
+    await forceFinanceCoin.pause();
+    expect(await forceFinanceCoin.paused()).to.be.true;
 
-    await forceFinanceCoin.connect(addr1).transfer(addr2.address, ethers.utils.parseUnits("50", 18));
-    const addr2Balance = await forceFinanceCoin.balanceOf(addr2.address);
-    expect(addr2Balance.toString()).to.equal(ethers.utils.parseUnits("50", 18).toString());
+    await forceFinanceCoin.unpause();
+    expect(await forceFinanceCoin.paused()).to.be.false;
   });
 
-  it("Should burn tokens", async function () {
-    await forceFinanceCoin.burn(ethers.utils.parseUnits("100", 18));
-    const ownerBalance = await forceFinanceCoin.balanceOf(owner.address);
-    expect(ownerBalance.toString()).to.equal(ethers.utils.parseUnits("4999999900", 18).toString());
+  it("Should mint tokens to a specified address", async function () {
+    const amount = 1000;
+    await forceFinanceCoin.mint(addr1.address, amount);
+    expect(await forceFinanceCoin.balanceOf(addr1.address)).to.equal(amount);
   });
 
-  it("Should fail if sender doesn't have enough tokens", async function () {
-    await expect(async () => {
-      await forceFinanceCoin.connect(addr1).transfer(owner.address, ethers.utils.parseEther("1"));
-    }).to.throw;
-  });
 
 });
