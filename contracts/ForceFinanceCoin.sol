@@ -29,8 +29,6 @@ contract ForceFinanceCoin is ERC20, ERC20Burnable, ERC20Pausable, Ownable, ERC20
         _mint(to, amount);
     }
 
-
-
     function _update(address from, address to, uint256 value)
         internal
         override(ERC20, ERC20Pausable)
